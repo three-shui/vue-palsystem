@@ -83,7 +83,6 @@ const route = useRoute()
     position: absolute;
     top: 50px;
     left: 240px;
-    background: yellow;
     width: calc(100% - 240px);
     height: calc(100% - 50px);
     padding: 20px;

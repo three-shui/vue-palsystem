@@ -11,6 +11,10 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 //鉴权
 import './permission'
+//引入ElementPlus，下面设置ElementPlus为中文
+import ElementPlus from 'element-plus'
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+
 
 const app = createApp(App)
 //element-plus图标
@@ -22,5 +26,9 @@ const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
 app.use(pinia)
 app.use(router)
+//设置ElementPlus为中文
+app.use(ElementPlus, {
+  locale: zhCn,
+})
 
 app.mount('#app')

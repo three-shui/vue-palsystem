@@ -2,7 +2,9 @@
 export const getTime = () => {
   let message = ''
   const hours = new Date().getHours()
-  if (hours >= 6 && hours <= 9) {
+  if (hours <= 6) {
+    message = '晚上'
+  } else if (hours <= 9) {
     message = '早上'
   } else if (hours <= 11) {
     message = '上午'
