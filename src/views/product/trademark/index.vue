@@ -12,7 +12,10 @@ const total = ref<number>(0)
 //存储品牌数据内容
 const trademarkList = ref<Records>([])
 
-const getTrademark = async () => {
+//当不指定显示第几页时，默认显示第一页
+//当切换每页显示数量时，也跳转到第一页
+const getTrademark = async (pager = 1) => {
+  pageNo.value = pager
   const res: TradeMarkResponseData = await reqHasTrademark(pageNo.value, pageSize.value)
   if (res.code === 200) {
     total.value = res.data.total
@@ -21,6 +24,11 @@ const getTrademark = async () => {
 }
 
 onMounted(() => getTrademark())
+
+//切换每页显示数量
+const sizeChange = () => {
+  getTrademark()
+}
 </script>
 
 <template>
@@ -50,8 +58,9 @@ onMounted(() => getTrademark())
         </el-table-column>
       </el-table>
       <!-- 底部分页条 -->
-      <el-pagination v-model:current-page="pageNo" v-model:page-size="pageSize" :page-sizes="[3, 5, 7, 9]"
-        :background="true" layout="prev, pager, next, jumper,->,sizes,total" :total="400" />
+      <el-pagination @current-change="getTrademark" @size-change="sizeChange" v-model:current-page="pageNo"
+        v-model:page-size="pageSize" :page-sizes="[3, 5, 7, 9]" :background="true"
+        layout="prev, pager, next, jumper,->,sizes,total" :total="400" />
     </el-card>
   </div>
 </template>
