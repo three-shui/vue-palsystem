@@ -9,7 +9,7 @@ import 'element-plus/es/components/message/style/css'
 
 const categoryStore = useCategoryStore()
 
-//定义一个数据用来进行切换
+//定义一个数据用来进行切换是否禁用
 const scene = ref(0)
 
 //收集新增的属性的数据
