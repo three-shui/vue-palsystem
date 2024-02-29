@@ -14,6 +14,8 @@ import './permission'
 //引入ElementPlus，下面设置ElementPlus为中文
 import ElementPlus from 'element-plus'
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+//引入暗黑模式
+import 'element-plus/theme-chalk/dark/css-vars.css'
 
 
 const app = createApp(App)

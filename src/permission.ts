@@ -5,8 +5,11 @@ import nprogress from 'nprogress'
 //引入进度条样式
 import 'nprogress/nprogress.css'
 nprogress.configure({ showSpinner: false });
-
 import { useUserSrote } from './stores/modules/user'
+import { ref } from 'vue'
+
+// 定义标识，记录路由是否添加
+const hasRoles = ref(true)
 
 //路由前置守卫
 //to:你将要访问那个路由
@@ -30,8 +33,14 @@ router.beforeEach(async (to, from, next) => {
         next()
       } else {
         try {
-          await userSrote.getUserInfo()
-          next()
+          //万一:刷新的时候是异步路由,有可能获取到用户信息、异步路由还没有加载完毕,出现空白的效果
+          if (hasRoles.value) {
+            await userSrote.getUserInfo();
+            hasRoles.value = false;
+            next(`${to.path}`)
+          } else {
+            next()
+          }
         } catch (error) { //获取用户信息失败(这种情况是指token失效)
           //清除用户信息并跳转到首页
           await userSrote.logout()
