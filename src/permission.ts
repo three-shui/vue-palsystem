@@ -34,6 +34,8 @@ router.beforeEach(async (to, from, next) => {
       } else {
         try {
           //万一:刷新的时候是异步路由,有可能获取到用户信息、异步路由还没有加载完毕,出现空白的效果
+          //这里如果切换账号登录的话动态路由加载会出现问题，所以在登录的login中又强制页面刷新了一次，解决动态路由加载出错的问题
+          //具体参考src\views\login\index.vue(63-65行)
           if (hasRoles.value) {
             await userSrote.getUserInfo();
             hasRoles.value = false;

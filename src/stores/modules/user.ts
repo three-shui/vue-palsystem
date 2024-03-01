@@ -28,6 +28,7 @@ export const useUserSrote = defineStore('user', () => {
   const token = ref('')
   const username = ref('')
   const avatar = ref('')
+  const buttons = ref<string[]>([])
 
   //登录
   const userLogin = async (data: loginFormData) => {
@@ -46,6 +47,7 @@ export const useUserSrote = defineStore('user', () => {
     if (res.code === 200) {
       username.value = res.data.name
       avatar.value = res.data.avatar
+      buttons.value = res.data.buttons
       //计算当前用户需要展示的异步路由(深拷贝)
       const userAsyncRoute = filterAsyncRoute(cloneDeep(asyncRoute), res.data.routes)
       routeList.value = [...constantRoute, ...userAsyncRoute, ...anyRoute]
@@ -73,7 +75,7 @@ export const useUserSrote = defineStore('user', () => {
     }
   }
 
-  return { token, userLogin, routeList, getUserInfo, username, avatar, logout }
+  return { token, userLogin, routeList, getUserInfo, username, avatar, logout, buttons }
 },
   //持久化
   {

@@ -60,6 +60,9 @@ const login = async () => {
     //跳转(如果路径中有redirect参数，则跳转到redirect参数，否则跳转到首页)
     const redirect: any = route.query.redirect
     router.push({ path: redirect || '/' })
+    //TODO
+    //页面刷新(这里防止异步路由加载权限出现问题，暂时先这么做) 
+    window.location.reload();
   } catch (error) {
     //1.2.登录失败
     ElNotification.error((error as Error).message)

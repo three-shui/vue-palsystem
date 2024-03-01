@@ -132,8 +132,8 @@ onBeforeUnmount(() => {
     <Category :scene="scene" />
     <el-card style="margin:10px 0">
       <div v-show="scene === 0">
-        <el-button type="primary" icon="Plus" :disabled="categoryStore.c3Id ? false : true"
-          @click="addSpu">添加SPU</el-button>
+        <el-button type="primary" icon="Plus" :disabled="categoryStore.c3Id ? false : true" @click="addSpu"
+          v-has='`btn.Spu.add`'>添加SPU</el-button>
         <el-table border style="margin:10px 0" :data="records">
           <el-table-column label="序号" width="80px" align="center" type="index" />
           <el-table-column label="SPU名称" prop="spuName" />

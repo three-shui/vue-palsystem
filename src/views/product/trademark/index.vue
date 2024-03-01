@@ -161,7 +161,7 @@ const removeTrademark = async (id: number) => {
   <div>
     <el-card class="box-card">
       <!-- 顶部按钮 -->
-      <el-button type="primary" icon="Plus" @click="addTrademark">添加品牌</el-button>
+      <el-button type="primary" icon="Plus" @click="addTrademark" v-has="`btn.Trademark.add`">添加品牌</el-button>
       <!-- 表格 -->
       <el-table style="margin:15px 0" border :data="trademarkList">
         <el-table-column label="序号" width="80px" align="center" type="index" />
